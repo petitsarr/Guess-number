@@ -1,7 +1,7 @@
 import React from 'react'  
 import {View , StyleSheet}   from "react-native"
 
-export const Card = ({children,style}) => {
+ const Card = ({children,style}) => {
     return (
        <View  style = {{...styles.card,...style}}>
         {children}

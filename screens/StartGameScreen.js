@@ -1,25 +1,41 @@
-import React from 'react' ;
-import {StyleSheet , View , Text ,TextInput, Button} from 'react-native' ;
+import React, { useState } from 'react' ;
+import {StyleSheet , View , Text ,TextInput, Button,TouchableWithoutFeedback ,Keyboard} from 'react-native' ; 
+import Input from '../components/Input';
 import Card from '../components/Card'; 
 import theme from '../constants/Color';
- const StartGameScreen = () => {
-    return (
-       <View style = {styles.screen}>
-          <Text style = {styles.title}> Start A new Game </Text>
-             <Card style = {styles.inputContainer}>
-             <Text style = {{textAlign : "center"}}> Select A Number</Text>
-              <TextInput /> 
-                <View style = {styles.buttonContainer}>
-                   <View style  = {styles.button}>
-                      <Button title = "Reset" onPress = {()=>{}} color = {theme.colors.accent} />
-                   </View>
-                <View  style  = {styles.button}> 
-                     <Button title ='Confirmation'  onPress = {()=>{}} color = {theme.colors.primary} /> 
-                     
-                  </View>
+ const StartGameScreen = () => { 
+    const [enterevalue ,setEnteredValue] = useState("")
+
+const handleChangeText = (txt) =>{
+   setEnteredValue(txt.replace(/[^0-9]/g,''))
+}
+
+    return (    
+      <TouchableWithoutFeedback onPress = {()=>{
+         console.log("utilisation du composant TouchableWithoutFeedback ")
+      //   l'api Keyboard.dismiss() ferme mon clavier 
+         Keyboard.dismiss() 
+      }}>
+      <View style = {styles.screen}>
+      <Text style = {styles.title}> Start A new Game </Text>
+         <Card style = {styles.inputContainer}>
+         <Text style = {{textAlign : "center"}}> Select A Number</Text>
+        <Input 
+        value = {enterevalue}
+        onChangeText = {handleChangeText}
+        />
+            <View style = {styles.buttonContainer}>
+               <View style  = {styles.button}>
+                  <Button title = "Reset" onPress = {()=>{}} color = {theme.colors.accent} />
+               </View>
+            <View  style  = {styles.button}> 
+                 <Button title ='Confirmation'  onPress = {()=>{}} color = {theme.colors.primary} /> 
+                 
               </View>
-            </Card>
-       </View>
+          </View>
+        </Card>
+   </View>
+      </TouchableWithoutFeedback>
     )
 }
 const styles = StyleSheet.create ({
