@@ -1,11 +1,44 @@
 import React, { useState } from 'react' ;
-import {StyleSheet , View , Text ,TextInput, Button,TouchableWithoutFeedback ,Keyboard} from 'react-native' ; 
+import {StyleSheet , View , Text ,TextInput, Button,TouchableWithoutFeedback ,Keyboard,Alert} from 'react-native' ; 
 import Input from '../components/Input';
 import Card from '../components/Card'; 
 import theme from '../constants/Color';
  const StartGameScreen = () => { 
-    const [enterevalue ,setEnteredValue] = useState("")
+    const [enterevalue ,setEnteredValue] = useState(" ") ;
+    const [confirmed,setConfirmed] = useState(false) ;
+    const  [selected ,setSelected]  = useState(" ")
 
+    const resetInputHandler = ()=>{
+       setEnteredValue("")
+       setConfirmed(false)
+    }
+
+    const confirmeInputHandler = () =>{
+
+      const mynumber = parseInt(enterevalue) 
+
+      if(isNaN(mynumber)  || mynumber <= 0 || mynumber > 100) {
+         Alert.alert("Numero invalide" , "Le numéro à choisir doit etre compris entre 0 et 100 "  , [
+            {
+               text :"okay" ,
+               style : "destructive" ,
+               onPress : resetInputHandler
+            }
+         ])
+         return ;
+      }
+ 
+       setConfirmed(true)  
+
+       setSelected(parseInt(mynumber))
+
+       setEnteredValue("")
+     
+    }  
+    let confirmedInpout  ;
+    if(confirmed) {
+       confirmedInpout = <Text> le numero que vous avez choisi est  {selected}</Text>
+    }
 const handleChangeText = (txt) =>{
    setEnteredValue(txt.replace(/[^0-9]/g,''))
 }
@@ -22,18 +55,26 @@ const handleChangeText = (txt) =>{
          <Text style = {{textAlign : "center"}}> Select A Number</Text>
         <Input 
         value = {enterevalue}
-        onChangeText = {handleChangeText}
+        onChangeText = {handleChangeText} 
+     
         />
             <View style = {styles.buttonContainer}>
                <View style  = {styles.button}>
-                  <Button title = "Reset" onPress = {()=>{}} color = {theme.colors.accent} />
+                  <Button title = "Reset" onPress = {()=>{
+                     resetInputHandler() ;
+                  }}
+                   color = {theme.colors.accent}
+                    />
                </View>
             <View  style  = {styles.button}> 
-                 <Button title ='Confirmation'  onPress = {()=>{}} color = {theme.colors.primary} /> 
+                 <Button title ='Confirmation'  onPress = {()=>{
+                    confirmeInputHandler()
+                 }} color = {theme.colors.primary} /> 
                  
               </View>
           </View>
         </Card>
+        {confirmedInpout }
    </View>
       </TouchableWithoutFeedback>
     )
