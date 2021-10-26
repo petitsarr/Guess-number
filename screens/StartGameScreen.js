@@ -1,17 +1,24 @@
 import React from 'react' ;
-import {StyleSheet , View , Text ,TextInput, Button} from 'react-native'
-
+import {StyleSheet , View , Text ,TextInput, Button} from 'react-native' ;
+import Card from '../components/Card'; 
+import theme from '../constants/Color';
  const StartGameScreen = () => {
     return (
        <View style = {styles.screen}>
-       <Text style = {styles.title}> Start A new Game </Text>
-       <View style = {styles.inputContainer}>
-       <TextInput/> 
-       <View style = {styles.buttonContainer}>
-       <Button title = "Reset" onPress = {()=>{}} /> 
-       <Button title ='Confirmation'  onPress = {()=>{}} />
-       </View>
-       </View>
+          <Text style = {styles.title}> Start A new Game </Text>
+             <Card style = {styles.inputContainer}>
+             <Text style = {{textAlign : "center"}}> Select A Number</Text>
+              <TextInput /> 
+                <View style = {styles.buttonContainer}>
+                   <View style  = {styles.button}>
+                      <Button title = "Reset" onPress = {()=>{}} color = {theme.colors.accent} />
+                   </View>
+                <View  style  = {styles.button}> 
+                     <Button title ='Confirmation'  onPress = {()=>{}} color = {theme.colors.primary} /> 
+                     
+                  </View>
+              </View>
+            </Card>
        </View>
     )
 }
@@ -24,18 +31,7 @@ const styles = StyleSheet.create ({
    inputContainer : {
  width : 300 ,
  maxWidth : "80%" ,
- shadowColor : "black" ,
- shadowOffset : {
-    width : 3 ,
-    height : 5
- } ,
- elevation : 8  ,
- shadowRadius : 6 ,
- shadowOpacity : 0.8 ,
- padding  : 20 ,
- borderRadius : 10 ,
- backgroundColor :"white",
- marginTop : 15
+ 
    },
    buttonContainer : {
   flexDirection :"row" ,
@@ -46,6 +42,10 @@ const styles = StyleSheet.create ({
    title : {
    fontSize : 20  , 
    marginVertical : 10 
+   } ,
+   button : {
+      width : 120
    }
+   
 })  
 export default StartGameScreen ;
