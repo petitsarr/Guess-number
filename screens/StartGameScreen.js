@@ -2,7 +2,8 @@ import React, { useState } from 'react' ;
 import {StyleSheet , View , Text ,TextInput, Button,TouchableWithoutFeedback ,Keyboard,Alert} from 'react-native' ; 
 import Input from '../components/Input';
 import Card from '../components/Card'; 
-import theme from '../constants/Color';
+import theme from '../constants/Color'; 
+import { FontAwesome } from '@expo/vector-icons';
  const StartGameScreen = () => { 
     const [enterevalue ,setEnteredValue] = useState(" ") ;
     const [confirmed,setConfirmed] = useState(false) ;
@@ -32,12 +33,18 @@ import theme from '../constants/Color';
 
        setSelected(parseInt(mynumber))
 
-       setEnteredValue("")
+       setEnteredValue("") 
+       Keyboard.dismiss()
      
     }  
     let confirmedInpout  ;
     if(confirmed) {
-       confirmedInpout = <Text> le numero que vous avez choisi est  {selected}</Text>
+       confirmedInpout = <Card  mystyle = {styles.mybutton}>
+       <Text> Le numéro que vous avez choisi est  {selected}</Text>
+       <Button onPress = {() => console.log("bouton started clicked")} title =   "Commencez le jeux svp !" />
+       </Card>
+    
+       
     }
 const handleChangeText = (txt) =>{
    setEnteredValue(txt.replace(/[^0-9]/g,''))
@@ -102,6 +109,11 @@ const styles = StyleSheet.create ({
    } ,
    button : {
       width : 120
+   } ,
+   mybutton : {
+
+      marginTop : 80 ,
+      padding : 20
    }
    
 })  
