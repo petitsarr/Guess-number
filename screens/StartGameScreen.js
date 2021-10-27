@@ -3,7 +3,8 @@ import {StyleSheet , View , Text ,TextInput, Button,TouchableWithoutFeedback ,Ke
 import Input from '../components/Input';
 import Card from '../components/Card'; 
 import theme from '../constants/Color'; 
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons'; 
+import NumberContainer from '../components/NumberContainer';
  const StartGameScreen = () => { 
     const [enterevalue ,setEnteredValue] = useState(" ") ;
     const [confirmed,setConfirmed] = useState(false) ;
@@ -40,7 +41,8 @@ import { FontAwesome } from '@expo/vector-icons';
     let confirmedInpout  ;
     if(confirmed) {
        confirmedInpout = <Card  mystyle = {styles.mybutton}>
-       <Text> Le numéro que vous avez choisi est  {selected}</Text>
+       <Text style = {{textAlign : "center"}}> Le numéro que vous avez choisi est </Text>
+      <NumberContainer>  {selected} </NumberContainer>
        <Button onPress = {() => console.log("bouton started clicked")} title =   "Commencez le jeux svp !" />
        </Card>
     
