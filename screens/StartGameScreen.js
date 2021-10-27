@@ -5,7 +5,7 @@ import Card from '../components/Card';
 import theme from '../constants/Color'; 
 import { FontAwesome } from '@expo/vector-icons'; 
 import NumberContainer from '../components/NumberContainer';
- const StartGameScreen = () => { 
+ const StartGameScreen = ( { StartGame} ) => { 
     const [enterevalue ,setEnteredValue] = useState(" ") ;
     const [confirmed,setConfirmed] = useState(false) ;
     const  [selected ,setSelected]  = useState(" ")
@@ -41,9 +41,9 @@ import NumberContainer from '../components/NumberContainer';
     let confirmedInpout  ;
     if(confirmed) {
        confirmedInpout = <Card  mystyle = {styles.mybutton}>
-       <Text style = {{textAlign : "center"}}> Le numéro que vous avez choisi est </Text>
+       <Text style = {{textAlign : "center"}}> Le numéro que vous avez choisi est  : </Text>
       <NumberContainer>  {selected} </NumberContainer>
-       <Button onPress = {() => console.log("bouton started clicked")} title =   "Commencez le jeux svp !" />
+       <Button onPress = {() => StartGame(selected)} title =   "Commencez le jeux svp !" />
        </Card>
     
        
@@ -59,9 +59,9 @@ const handleChangeText = (txt) =>{
          Keyboard.dismiss() 
       }}>
       <View style = {styles.screen}>
-      <Text style = {styles.title}> Start A new Game </Text>
+      <Text style = {styles.title}> Commencer une nouvelle partie </Text>
          <Card style = {styles.inputContainer}>
-         <Text style = {{textAlign : "center"}}> Select A Number</Text>
+         <Text style = {{textAlign : "center"}}> Sélectionner un nombre </Text>
         <Input 
         value = {enterevalue}
         onChangeText = {handleChangeText} 

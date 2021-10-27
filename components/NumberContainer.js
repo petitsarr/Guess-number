@@ -14,15 +14,15 @@ const NumberContainer = props => {
 const styles = StyleSheet.create({
   container: {
     borderWidth: 2,
-    borderColor: theme.accent,
-    padding: 10,
+    borderColor: theme.colors.accent,
+    padding: 1,
     borderRadius: 10,
     marginVertical: 10,
     alignItems: 'center',
     justifyContent: 'center'
   },
   number: {
-    color: theme.primary,
+    color: theme.colors.primary,
     fontSize: 22
   }
 });
