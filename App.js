@@ -16,7 +16,7 @@ export default function App() {
 
   let contenu =    <StartGameScreen StartGame = { StartGame}/>
 if(number ) {
-  contenu = <GameScreen/>
+  contenu = <GameScreen  userChoice = {number} />
 }
 
   
