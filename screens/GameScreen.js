@@ -18,7 +18,7 @@ const generateRandomBetween = (min, max, exclude) => {
 
 
 
-const GameScreen = ({userChoice}) => {
+const GameScreen = ({OneGameOver,userChoice}) => {
 
 
   const [currentGuess, setCurrentGuess] = useState(
@@ -27,10 +27,16 @@ const GameScreen = ({userChoice}) => {
 
   const [rounds, setRounds] = useState(0);
   const currentLow = useRef(1);
-  const currentHigh = useRef(100);
+  const currentHigh = useRef(100); 
   
 console.log("le nombre choisi par l'utilisateur est ",userChoice)
 
+
+useEffect(() => {
+  if(currentGuess === userChoice) {
+    OneGameOver(rounds)
+  }
+},[currentGuess ,userChoice , OneGameOver])
 
 
 //fonction pour controller mes deux boutons inférieur et superieur par rapport au nombre nombre deviné 
